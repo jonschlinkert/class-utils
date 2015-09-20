@@ -297,7 +297,7 @@ cu.inherit = function inherit(receiver, provider, omit) {
   var keys = [];
   for (var key in provider) {
     keys.push(key);
-    define(receiver, key, provider[key]);
+    receiver[key] = provider[key];
   }
 
   keys = keys.concat(cu.arrayify(omit));
