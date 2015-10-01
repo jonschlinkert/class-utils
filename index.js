@@ -261,7 +261,8 @@ cu.copy = function copy(receiver, provider, omit) {
   }
   var props = Object.getOwnPropertyNames(provider);
   var keys = Object.keys(provider);
-  var len = props.length, key;
+  var len = props.length,
+    key;
   omit = cu.arrayify(omit);
 
   while (len--) {
@@ -334,7 +335,7 @@ cu.extend = function extend(Parent) {
     throw new TypeError('expected Parent to be a function.');
   }
 
-  return function (Ctor, proto) {
+  return function(Ctor, proto) {
     if (typeof Ctor !== 'function') {
       throw new TypeError('expected Ctor to be a function.');
     }
@@ -352,6 +353,11 @@ cu.extend = function extend(Parent) {
         Ctor.prototype[k] = obj[k];
       }
     }
+
+    Ctor.prototype.mixin = function(key, value) {
+      Ctor.prototype[key] = value;
+    };
+
     Ctor.extend = cu.extend(Ctor);
   };
 };
