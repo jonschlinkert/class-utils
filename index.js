@@ -1,17 +1,20 @@
 'use strict';
 
 var util = require('util');
-var define = require('define-property');
-var isObj = require('isobject');
+var utils = require('./utils');
+
+/**
+ * Expose class utils
+ */
+
+var cu = module.exports;
 
 /**
  * Expose class utils: `cu`
  */
 
-var cu = exports = module.exports;
-
 cu.isObject = function isObject(val) {
-  return isObj(val) || typeof val === 'function';
+  return utils.isObj(val) || typeof val === 'function';
 };
 
 /**
@@ -109,7 +112,7 @@ cu.hasAll = function hasAll(val, values) {
  */
 
 cu.arrayify = function arrayify(val) {
-  return val ? (Array.isArray(val) ? val : [val]) : []
+  return val ? (Array.isArray(val) ? val : [val]) : [];
 };
 
 /**
@@ -238,7 +241,7 @@ cu.copyDescriptor = function copyDescriptor(receiver, provider, name) {
     throw new TypeError('expected name to be a string.');
   }
   var val = cu.getDescriptor(provider, name);
-  if (val) define(receiver, name, val);
+  if (val) utils.define(receiver, name, val);
 };
 
 /**
@@ -269,7 +272,7 @@ cu.copy = function copy(receiver, provider, omit) {
     key = props[len];
 
     if (cu.has(keys, key)) {
-      define(receiver, key, provider[key]);
+      utils.define(receiver, key, provider[key]);
     } else if (!(key in receiver) && !cu.has(omit, key)) {
       cu.copyDescriptor(receiver, provider, key);
     }
