@@ -62,17 +62,17 @@ describe('hasAll', function() {
     });
 
     it('should be false if an object does not have all given value:', function() {
-        assert(!cu.hasAll({
-          a: 'b',
-          b: 'c',
-          c: 'd'
-        }, 'd'));
-        assert(!cu.hasAll({
-          a: 'b',
-          b: 'c',
-          c: 'd'
-        }, ['c', 'b', 'z']));
-      });
+      assert(!cu.hasAll({
+        a: 'b',
+        b: 'c',
+        c: 'd'
+      }, 'd'));
+      assert(!cu.hasAll({
+        a: 'b',
+        b: 'c',
+        c: 'd'
+      }, ['c', 'b', 'z']));
+    });
   });
 
   describe('arrays', function() {
@@ -83,9 +83,9 @@ describe('hasAll', function() {
     });
 
     it('should be false if an array does not have all given value:', function() {
-        assert(!cu.hasAll(['a', 'b', 'c'], 'd'));
-        assert(!cu.hasAll(['a', 'b', 'c'], ['c', 'b', 'z']));
-      });
+      assert(!cu.hasAll(['a', 'b', 'c'], 'd'));
+      assert(!cu.hasAll(['a', 'b', 'c'], ['c', 'b', 'z']));
+    });
   });
 });
 
@@ -104,17 +104,17 @@ describe('has', function() {
       }, 'b'));
     });
     it('should return false if an array does not have the given value:', function() {
-        assert(!cu.has({
-          a: 'b',
-          b: 'c',
-          c: 'd'
-        }, 'd'));
-        assert(!cu.has({
-          a: 'b',
-          b: 'c',
-          c: 'd'
-        }, 'e'));
-      });
+      assert(!cu.has({
+        a: 'b',
+        b: 'c',
+        c: 'd'
+      }, 'd'));
+      assert(!cu.has({
+        a: 'b',
+        b: 'c',
+        c: 'd'
+      }, 'e'));
+    });
     it('should return true if an array has any given values:', function() {
       assert(cu.has({
         a: 'b',
@@ -128,17 +128,17 @@ describe('has', function() {
       }, ['a', 'z']));
     });
     it('should return false if an array does not have any given values:', function() {
-        assert(!cu.has({
-          a: 'b',
-          b: 'c',
-          c: 'd'
-        }, ['x', 'z']));
-        assert(!cu.has({
-          a: 'b',
-          b: 'c',
-          c: 'd'
-        }, ['y', 'z']));
-      });
+      assert(!cu.has({
+        a: 'b',
+        b: 'c',
+        c: 'd'
+      }, ['x', 'z']));
+      assert(!cu.has({
+        a: 'b',
+        b: 'c',
+        c: 'd'
+      }, ['y', 'z']));
+    });
   });
 
   describe('arrays', function() {
@@ -147,38 +147,38 @@ describe('has', function() {
       assert(cu.has(['a', 'b', 'c'], 'b'));
     });
     it('should return false if an array does not have the given value:', function() {
-        assert(!cu.has(['a', 'b', 'c'], 'd'));
-        assert(!cu.has(['a', 'b', 'c'], 'e'));
-      });
+      assert(!cu.has(['a', 'b', 'c'], 'd'));
+      assert(!cu.has(['a', 'b', 'c'], 'e'));
+    });
     it('should return true if an array has any given values:', function() {
       assert(cu.has(['a', 'b', 'c'], ['c', 'z']));
       assert(cu.has(['a', 'b', 'c'], ['a', 'z']));
     });
     it('should return false if an array does not have any given values:', function() {
-        assert(!cu.has(['a', 'b', 'c'], ['x', 'z']));
-        assert(!cu.has(['a', 'b', 'c'], ['y', 'z']));
-      });
+      assert(!cu.has(['a', 'b', 'c'], ['x', 'z']));
+      assert(!cu.has(['a', 'b', 'c'], ['y', 'z']));
+    });
   });
 
   it('should throw an error when the value is not an array or object:', function() {
-      (function() {
-        cu.has('foo');
-      }).should.throw('expected an array or object.');
-    });
+    (function() {
+      cu.has('foo');
+    }).should.throw('expected an array or object.');
+  });
 });
 
 describe('hasConstructor', function() {
   it('should return true if a value is an object and has a constructor:', function() {
-      assert(cu.hasConstructor({
-        a: 'b',
-        b: 'c',
-        c: 'd'
-      }));
-      assert(cu.hasConstructor(function() {}));
-      assert(cu.hasConstructor(App));
-      assert(cu.hasConstructor(new App()));
-      assert(cu.hasConstructor(Object.create(new App())));
-    });
+    assert(cu.hasConstructor({
+      a: 'b',
+      b: 'c',
+      c: 'd'
+    }));
+    assert(cu.hasConstructor(function() {}));
+    assert(cu.hasConstructor(App));
+    assert(cu.hasConstructor(new App()));
+    assert(cu.hasConstructor(Object.create(new App())));
+  });
 
   it('should return false if a value is not object:', function() {
     assert(!cu.hasConstructor('foo'));
@@ -186,9 +186,9 @@ describe('hasConstructor', function() {
   });
 
   it('should return false if an object does not have a constructor:', function() {
-      assert(!cu.hasConstructor(Object.create(null)));
-      assert(!cu.hasConstructor(null));
-    });
+    assert(!cu.hasConstructor(Object.create(null)));
+    assert(!cu.hasConstructor(null));
+  });
 });
 
 describe('nativeKeys', function() {
@@ -198,23 +198,19 @@ describe('nativeKeys', function() {
       b: 'c',
       c: 'd'
     }), ['a', 'b', 'c']);
-    assert.hasAll(cu.nativeKeys(function() {}), ['length', 'caller']);
-    assert.hasAll(cu.nativeKeys(App), ['length', 'caller']);
-    assert.hasAll(cu.nativeKeys(App.prototype), ['constructor', 'set',
-      'get', 'del'
-    ]);
-    assert.hasAll(cu.nativeKeys(App.constructor), ['length', 'caller']);
-    assert.hasAll(cu.nativeKeys(App.prototype.constructor), ['length',
-      'caller'
-    ]);
+    assert.hasAll(cu.nativeKeys(function() {}), ['length', 'name', 'prototype']);
+    assert.hasAll(cu.nativeKeys(App), ['length', 'name', 'prototype']);
+    assert.hasAll(cu.nativeKeys(App.prototype), ['constructor', 'set', 'get', 'del']);
+    assert.hasAll(cu.nativeKeys(App.constructor), ['length', 'name', 'caller']);
+    assert.hasAll(cu.nativeKeys(App.prototype.constructor), ['length', 'caller']);
     assert.hasAll(cu.nativeKeys(new App()), ['options']);
     assert.hasAll(cu.nativeKeys(Object.create(new App())), []);
   });
 
   it('should return empty array if a value does not have native keys:', function() {
-      assert.deepEqual(cu.nativeKeys(Object.create(null)), []);
-      assert.deepEqual(cu.nativeKeys(null), []);
-    });
+    assert.deepEqual(cu.nativeKeys(Object.create(null)), []);
+    assert.deepEqual(cu.nativeKeys(null), []);
+  });
 });
 
 describe('getDescriptor', function() {
