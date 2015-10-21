@@ -240,8 +240,9 @@ cu.copyDescriptor = function copyDescriptor(receiver, provider, name) {
   if (typeof name !== 'string') {
     throw new TypeError('expected name to be a string.');
   }
+
   var val = cu.getDescriptor(provider, name);
-  if (val) utils.define(receiver, name, val);
+  if (val) Object.defineProperty(receiver, name, val);
 };
 
 /**
