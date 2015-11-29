@@ -363,5 +363,8 @@ cu.extend = function extend(Parent) {
     };
 
     Ctor.extend = cu.extend(Ctor);
+    if (Parent.inherit) {
+      Ctor.inherit = Parent.inherit;
+    }
   };
 };
