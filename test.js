@@ -384,8 +384,6 @@ describe('extend', function() {
   it('should add descriptors to Ctor:', function() {
     var extend = cu.extend(Parent);
     extend(Ctor);
-    // add +1 for `mixin` method
-    assert.strictEqual(Ctor.prototype.count, 1);
   });
 
   it('should copy prototype properties to Ctor:', function() {
@@ -396,8 +394,12 @@ describe('extend', function() {
     assert(typeof Ctor.prototype.del === 'function');
   });
 
-  it('should add a mixin method to the prototype of Ctor:', function() {
-    var extend = cu.extend(Parent);
+  it('should add a mixin method to the prototype of Ctor using `extend` function:', function() {
+    var extend = cu.extend(Parent, function(Child) {
+      Child.prototype.mixin = function(key, val) {
+        Child.prototype[key] = val;
+      };
+    });
     extend(Ctor, App.prototype);
     assert(typeof Ctor.prototype.mixin === 'function');
     assert(typeof Ctor.prototype.get === 'function');
@@ -405,8 +407,12 @@ describe('extend', function() {
     assert(typeof Ctor.prototype.del === 'function');
   });
 
-  it('should mixin methods to the Ctor.prototype:', function() {
-    var extend = cu.extend(Parent);
+  it('should mixin methods to the Ctor.prototype using `extend` function:', function() {
+    var extend = cu.extend(Parent, function(Child) {
+      Child.prototype.mixin = function(key, val) {
+        Child.prototype[key] = val;
+      };
+    });
     extend(Ctor, App.prototype);
     var app = new Ctor();
     app.mixin('foo', function() {});
