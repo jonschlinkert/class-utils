@@ -328,13 +328,14 @@ cu.inherit = function inherit(receiver, provider, omit) {
  * });
  * ```
  * @param {Function} `Parent` Parent ctor
+ * @param {Function} `extend` Optional extend function to handle custom extensions. Useful when updating methods that require a specific prototype.
  *   @param {Function} `Child` Child ctor
  *   @param {Object} `proto` Optionally pass additional prototype properties to inherit.
  *   @return {Object}
  * @api public
  */
 
-cu.extend = function extend(Parent) {
+cu.extend = function extend(Parent, extend) {
   if (typeof Parent !== 'function') {
     throw new TypeError('expected Parent to be a function.');
   }
@@ -358,13 +359,10 @@ cu.extend = function extend(Parent) {
       }
     }
 
-    Ctor.prototype.mixin = function(key, value) {
-      Ctor.prototype[key] = value;
-    };
-
-    Ctor.extend = cu.extend(Ctor);
-    if (Parent.inherit) {
-      Ctor.inherit = Parent.inherit;
+    if (typeof extend === 'function') {
+      extend(Ctor, Parent);
     }
+
+    Ctor.extend = cu.extend(Ctor, extend);
   };
 };
