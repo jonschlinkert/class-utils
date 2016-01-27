@@ -359,7 +359,13 @@ cu.extend = function extend(Parent, extend) {
       }
     }
 
-    Ctor.Parent = Parent;
+    utils.define(Ctor.prototype, '_parent_', {
+      configurable: true,
+      get: function() {
+        return Parent.prototype;
+      },
+      set: function() {}
+    });
 
     if (typeof extend === 'function') {
       extend(Ctor, Parent);

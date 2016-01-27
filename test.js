@@ -366,12 +366,36 @@ describe('extend', function() {
     proto = App.prototype;
   });
 
-  it('should add `Parent` to `Ctor`', function() {
+  it('should add `Parent.prototype` to `Ctor` instances as `_parent_`', function() {
     var extend = cu.extend(Parent);
-    assert.equal(typeof Ctor.Parent, 'undefined');
+    var instance1 = new Ctor();
+    assert.equal(typeof instance1._parent_, 'undefined');
     extend(Ctor);
-    assert.equal(typeof Ctor.Parent, 'function');
-    assert.deepEqual(Ctor.Parent, Parent);
+    var instance2 = new Ctor();
+    assert.equal(typeof instance2._parent_, 'object');
+    assert.deepEqual(instance2._parent_, Parent.prototype);
+  });
+
+  it('should access `Parent` methods through `_parent_`', function() {
+    Parent.prototype.upper = function(str) {
+      return str.toUpperCase();
+    };
+
+    var extend = cu.extend(Parent);
+    extend(Ctor);
+
+    var instance = new Ctor();
+    assert.equal(instance.upper('foo'), 'FOO');
+
+    instance.upper = function(str) {
+      return str;
+    };
+    assert.equal(instance.upper('foo'), 'foo');
+
+    instance.upper = function(str) {
+      return this._parent_.upper(str) + ' ' + str;
+    };
+    assert.equal(instance.upper('foo'), 'FOO foo');
   });
 
   it('should add static methods to Ctor:', function() {
