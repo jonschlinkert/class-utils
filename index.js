@@ -359,6 +359,8 @@ cu.extend = function extend(Parent, extend) {
       }
     }
 
+    Ctor.Parent = Parent;
+
     if (typeof extend === 'function') {
       extend(Ctor, Parent);
     }

@@ -366,6 +366,14 @@ describe('extend', function() {
     proto = App.prototype;
   });
 
+  it('should add `Parent` to `Ctor`', function() {
+    var extend = cu.extend(Parent);
+    assert.equal(typeof Ctor.Parent, 'undefined');
+    extend(Ctor);
+    assert.equal(typeof Ctor.Parent, 'function');
+    assert.deepEqual(Ctor.Parent, Parent);
+  });
+
   it('should add static methods to Ctor:', function() {
     var extend = cu.extend(Parent);
     extend(Ctor);
