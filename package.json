@@ -1,7 +1,7 @@
 {
   "name": "class-utils",
   "description": "Utils for working with JavaScript classes and prototype methods.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://github.com/jonschlinkert/class-utils",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/class-utils",
@@ -23,10 +23,11 @@
   "dependencies": {
     "define-property": "^0.2.5",
     "isobject": "^2.0.0",
-    "lazy-cache": "^0.2.4"
+    "lazy-cache": "^1.0.3"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-format-md": "^0.1.7",
     "gulp-istanbul": "^0.10.0",
     "gulp-jshint": "^1.11.2",
     "gulp-mocha": "^2.1.3",
@@ -49,12 +50,27 @@
     "utils"
   ],
   "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
     "related": {
       "list": [
         "define-property",
         "delegate-properties",
         "is-descriptor"
       ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
     }
   }
 }
