@@ -374,3 +374,27 @@ cu.extend = function extend(Parent, extend) {
     Ctor.extend = cu.extend(Ctor, extend);
   };
 };
+
+/**
+ * Bubble up events emitted from static methods on the Parent ctor.
+ *
+ * @param {Object} `Parent`
+ * @param {Array} `events` Event names to bubble up
+ * @api public
+ */
+
+cu.bubble = function(Parent, events) {
+  events = events || [];
+  Parent.bubble = function(Child, arr) {
+    if (Array.isArray(arr)) {
+      events = utils.union([], events, arr);
+    }
+    var len = events.length;
+    var idx = -1;
+    while (++idx < len) {
+      var name = events[idx];
+      Parent.on(name, Child.emit.bind(Child, name));
+    }
+    cu.bubble(Child, events);
+  };
+};
