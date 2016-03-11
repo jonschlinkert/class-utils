@@ -335,44 +335,9 @@ cu.inherit = function inherit(receiver, provider, omit) {
  * @api public
  */
 
-cu.extend = function extend(Parent, extend) {
-  if (typeof Parent !== 'function') {
-    throw new TypeError('expected Parent to be a function.');
-  }
-
-  return function(Ctor, proto) {
-    if (typeof Ctor !== 'function') {
-      throw new TypeError('expected Ctor to be a function.');
-    }
-
-    util.inherits(Ctor, Parent);
-
-    for (var key in Parent) {
-      Ctor[key] = Parent[key];
-    }
-
-    if (typeof proto === 'object') {
-      var obj = Object.create(proto);
-
-      for (var k in obj) {
-        Ctor.prototype[k] = obj[k];
-      }
-    }
-
-    utils.define(Ctor.prototype, '_parent_', {
-      configurable: true,
-      get: function() {
-        return Parent.prototype;
-      },
-      set: function() {}
-    });
-
-    if (typeof extend === 'function') {
-      extend(Ctor, Parent);
-    }
-
-    Ctor.extend = cu.extend(Ctor, extend);
-  };
+cu.extend = function() {
+  // keep it lazy, instead of assigning to `cu.extend`
+  return utils.staticExtend.apply(null, arguments);
 };
 
 /**
