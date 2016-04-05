@@ -8,6 +8,7 @@ require = utils;
  * Lazily required module dependencies
  */
 
+require('arr-union', 'union');
 require('define-property', 'define');
 require('isobject', 'isObj');
 require('static-extend');
