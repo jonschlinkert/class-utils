@@ -23,7 +23,7 @@
   "dependencies": {
     "arr-union": "^3.1.0",
     "define-property": "^0.2.5",
-    "isobject": "^2.0.0",
+    "isobject": "^3.0.0",
     "lazy-cache": "^1.0.3",
     "static-extend": "^0.1.1"
   },
