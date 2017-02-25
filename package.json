@@ -1,7 +1,7 @@
 {
   "name": "class-utils",
   "description": "Utils for working with JavaScript classes and prototype methods.",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "homepage": "https://github.com/jonschlinkert/class-utils",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
