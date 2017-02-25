@@ -4,6 +4,11 @@
   "version": "0.3.4",
   "homepage": "https://github.com/jonschlinkert/class-utils",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "<wtgtybhertgeghgtwtg@gmail.com> (https://github.com/wtgtybhertgeghgtwtg)",
+    "Brian Woodward <brian.woodward@gmail.com> (https://github.com/doowb)",
+    "Jon Schlinkert <jon.schlinkert@sellside.com> (http://twitter.com/jonschlinkert)"
+  ],
   "repository": "jonschlinkert/class-utils",
   "bugs": {
     "url": "https://github.com/jonschlinkert/class-utils/issues"
