@@ -12,7 +12,6 @@ assert.contains = function(a, b) {
   assert(cu.has(a, b));
 };
 
-
 describe('noop', function() {
   it('should return undefined:', function() {
     assert(typeof cu.noop({}) === 'undefined');
