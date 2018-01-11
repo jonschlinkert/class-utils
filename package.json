@@ -5,9 +5,9 @@
   "homepage": "https://github.com/jonschlinkert/class-utils",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
-    "<wtgtybhertgeghgtwtg@gmail.com> (https://github.com/wtgtybhertgeghgtwtg)",
-    "Brian Woodward <brian.woodward@gmail.com> (https://github.com/doowb)",
-    "Jon Schlinkert <jon.schlinkert@sellside.com> (http://twitter.com/jonschlinkert)"
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
+    "(https://github.com/wtgtybhertgeghgtwtg)"
   ],
   "repository": "jonschlinkert/class-utils",
   "bugs": {
@@ -15,8 +15,7 @@
   },
   "license": "MIT",
   "files": [
-    "index.js",
-    "utils.js"
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
@@ -29,7 +28,6 @@
     "arr-union": "^3.1.0",
     "define-property": "^0.2.5",
     "isobject": "^3.0.0",
-    "lazy-cache": "^2.0.2",
     "static-extend": "^0.1.1"
   },
   "devDependencies": {
