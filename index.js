@@ -292,7 +292,6 @@ cu.copy = function copy(receiver, provider, omit) {
  * @param {Object} `receiver`
  * @param {Object} `provider`
  * @param {String|Array} `omit` One or more properties to omit
- * @return {Object}
  * @api public
  */
 
